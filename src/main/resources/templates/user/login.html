@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Σύνδεση</title>
+</head>
+
+<body>
+	<nav th:replace="fragments/navbar :: navbar"></nav>
+	<div class="container col-4">
+		<br><br><br>
+		<h3>Σύνδεση χρήστη</h3>
+		<br>
+		<form th:action="@{/login}" method="POST">
+					
+			<input type="text" name="username"
+					class="form-control mb-4" placeholder="Όνομα χρήστη">
+
+			<input type="password" name="password"
+					class="form-control mb-4" placeholder="Κωδικός">
+				
+			<button type="submit" class="btn btn-info">Είσοδος</button>
+			<a th:href="@{/register}">Εγγραφή</a>	
+			<br><br>
+			<div th:if="${param.error}" class="alert alert-danger">    
+			    Λάθος όνομα χρήστη/κωδικός
+			</div>
+			
+			<div th:if="${successMessage}" class="alert alert-success">    
+			    Η εγγραφή ήταν επιτυχής!
+			</div>
+				
+		</form>		
+	</div>
+</body>
+
+</html>

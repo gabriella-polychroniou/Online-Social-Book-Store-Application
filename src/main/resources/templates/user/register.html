@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Εγγραφή</title>
+</head>
+
+<body>
+	<nav th:replace="fragments/navbar :: navbar"></nav>
+	<div class="container col-4">
+		<br><br><br>
+		<h3>Εγγραφή χρήστη</h3>
+		<br>
+		
+		<form th:action="@{/save}" th:object="${user}" method="POST">
+			
+			<div th:if="${param.error}" class="alert alert-danger">    
+			    Το όνομα χρήστη υπάρχει ήδη!
+			</div>
+			
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{id}" />
+			
+			<label>Όνομα Χρήστη</label>
+			<input required type="text" th:field="*{username}"
+					class="form-control mb-4">
+			
+			<label>Κωδικός</label>
+			<input required type="password" name="password"
+					class="form-control mb-4">
+			
+			<label>Πλήρες Όνομα</label>
+			<input required type="text" th:field="*{fullname}"
+					class="form-control mb-4">
+			
+			<label>Τηλέφωνο</label>
+			<input required type="number" th:field="*{phonenumber}"
+					class="form-control mb-4">
+			
+			<label>Διεύθυνση</label>
+			<input required type="text" th:field="*{address}"
+					class="form-control mb-4">
+			
+			<label>Ηλικία</label>
+			<input required type="number" th:field="*{age}"
+					class="form-control mb-4" placeholder="Ηλικία">
+			
+			<label>Αγαπημένοι Συγγραφείς</label>
+			<select class="form-control mb-4" multiple th:field="*{favoriteBookAuthors}">
+				<option th:each="author: ${authors}" th:value="${author.name}" th:text="${author.name}"></option>
+			</select>
+			
+			<label>Αγαπημένες Κατηγορίες Βιβλίων</label>
+			<select required class="form-control mb-4" multiple th:field="*{favoriteBookCategories}">
+				<option value="Art">Art</option>
+				<option value="Comic">Comic</option>
+				<option value="Fantasy">Fantasy</option>
+				<option value="Fiction">Fiction</option>
+				<option value="Biographies">Biographies</option>
+				<option value="History">History</option>
+				<option value="Science">Science</option>
+				<option value="Literature">Literature</option>
+				<option value="Adventure">Adventure</option>
+				<option value="Crime">Crime</option>
+				<option value="Other">Other</option>
+			</select>
+			
+			<button type="submit" class="btn btn-info">Εγγραφή</button>
+			<a th:href="@{/login}">Είσοδος</a>					
+		</form>
+		
+		
+	</div>
+</body>
+
+</html>
