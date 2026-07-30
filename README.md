@@ -1,1 +1,1 @@
-Α team SpringBoot application for the University course of Software Engineering.
+Α SpringBoot application for the University course of Software Engineering.
